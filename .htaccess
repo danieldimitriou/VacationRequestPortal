@@ -1,0 +1,23 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Rewrite /employee_home.php to /employee
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^employee$ /EpignosisPortal/App/Views/Home/Employee/employee_home.php [L]
+
+# Rewrite /manager_home.php to /manager
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^manager$ /EpignosisPortal/App/Views/Home/Manager/manager_home.php [L]
+
+# Rewrite /create_employee.php to /create-employee
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^create-employee$ /EpignosisPortal/App/Views/CreateEmployee/create_employee.php [L]
+
+# Rewrite /submit_vacation_request.php to /submit-vacation-request
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^submit-vacation-request$ /EpignosisPortal/App/Views/SubmitVacationRequest/submit_vacation_request.php [L]
