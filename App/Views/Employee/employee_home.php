@@ -16,11 +16,11 @@ $requests = $controller->get_all_vacation_requests();
 </head>
 <body>
 <?php
-include '../../Common/header.php';
+include '../Common/header.php';
 ?>
 <div class="container">
     <h1>Vacation Requests</h1>
-    <a href="http://localhost/EpignosisPortal/App/Views/SubmitVacationRequest/submit_vacation_request.php" class="button" style="display: inline-block;padding: 10px 20px;  background-color: lightslategray;
+    <a href="http://localhost/EpignosisPortal/App/Views/Employee/submit_vacation_request.php" class="button" style="display: inline-block;padding: 10px 20px;  background-color: lightslategray;
   color: white;
   text-decoration: none;
   border-radius: 4px;">Submit new request</a>

@@ -1,6 +1,6 @@
 <?php
 use App\Controllers\UserController;
-require_once '../../../../autoload.php';
+require_once 'autoload.php';
 require_once 'App/Controllers/UserController.php';
 // Fetch All Users
 $controller = new UserController();
@@ -23,11 +23,11 @@ $users = $controller->get_all_employees();
 <body>
 
 <?php
-include '../../Common/header.php';
+include '../Common/header.php';
 ?>
 <div class="container">
     <h1>User Management</h1>
-    <a href="http://localhost/EpignosisPortal/App/Views/CreateEmployee/create_employee.php" class="button" style="display: inline-block;padding: 10px 20px;  background-color: lightslategray;
+    <a href="http://localhost/EpignosisPortal/App/Views/Manager/create_employee.php" class="button" style="display: inline-block;padding: 10px 20px;  background-color: lightslategray;
   color: white;
   text-decoration: none;
   border-radius: 4px;">Add new employees</a>

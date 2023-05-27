@@ -22,7 +22,7 @@ include '../Common/header.php';
     <h1>Vacation Requests</h1>
         <div class="col-md-6">
             <h2>New Request</h2>
-            <form action="../../../Controllers/RequestController.php" method="POST">
+            <form action="../../Controllers/RequestController.php" method="POST">
                 <div class="form-group">
                     <label for="date_from">Date from (vacation start):</label>
                     <input type="date" class="form-control" id="vacation_start" name="vacation_start" required>

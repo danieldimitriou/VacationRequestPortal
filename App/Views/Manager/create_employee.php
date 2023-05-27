@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
+<?php
+include '../Common/header.php';
+?>
 <div class="container">
-    <?php
-    include '../Common/header.php';
-    ?>
+
     <h1>Create New Employee</h1>
 
     <form action="../../Controllers/UserController.php" method="POST">

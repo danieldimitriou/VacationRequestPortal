@@ -60,6 +60,87 @@ class VacationRequest extends Database {
 
     }
 
+    /**
+     * @return string
+     */
+    public function getVacationStart(): string
+    {
+        return $this->vacation_start;
+    }
+
+    /**
+     * @param string $vacation_start
+     */
+    public function setVacationStart(string $vacation_start): void
+    {
+        $this->vacation_start = $vacation_start;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVacationEnd(): string
+    {
+        return $this->vacation_end;
+    }
+
+    /**
+     * @param string $vacation_end
+     */
+    public function setVacationEnd(string $vacation_end): void
+    {
+        $this->vacation_end = $vacation_end;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReason(): string
+    {
+        return $this->reason;
+    }
+
+    /**
+     * @param string $reason
+     */
+    public function setReason(string $reason): void
+    {
+        $this->reason = $reason;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDaysRequested(): int
+    {
+        return $this->days_requested;
+    }
+
+    /**
+     * @param int $days_requested
+     */
+    public function setDaysRequested(int $days_requested): void
+    {
+        $this->days_requested = $days_requested;
+    }
+
+
 }
 
 
