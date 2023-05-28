@@ -1,0 +1,17 @@
+{
+    "name": "danie/epignosis-portal",
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Danie\\EpignosisPortal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "danieldimitriou",
+            "email": "danieldimitriou1@gmail.com"
+        }
+    ]
+}

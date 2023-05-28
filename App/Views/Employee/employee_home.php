@@ -2,7 +2,13 @@
 use App\Controllers\RequestController;
 require_once 'autoload.php';
 require_once 'App/Controllers/RequestController.php';
+require_once '../Common/header.php';
+require_once '../Common/session.php';
+//session_start(); // Start the session
+var_dump($_SESSION);
 $controller = new RequestController();
+//var_dump($_SESSION["user_type"]);
+
 //
 //// Fetch All Users (employees)
 $requests = $controller->get_all_vacation_requests();
@@ -15,9 +21,6 @@ $requests = $controller->get_all_vacation_requests();
     <!-- Add any additional CSS links or stylesheets here -->
 </head>
 <body>
-<?php
-include '../Common/header.php';
-?>
 <div class="container">
     <h1>Vacation Requests</h1>
     <a href="http://localhost/EpignosisPortal/App/Views/Employee/submit_vacation_request.php" class="button" style="display: inline-block;padding: 10px 20px;  background-color: lightslategray;

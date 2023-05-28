@@ -66,17 +66,24 @@ class User extends Database
     }
 
     public static function get_all_users(){
-
         $db = static::connectToDatabase();
         $sql_statement = 'SELECT * FROM Users';
         $query = $db->prepare($sql_statement);
         $query->execute();
         $users = $query->fetchAll(PDO::FETCH_ASSOC);
-
         return $users;
-
     }
 
+    public static function get_manager_email(){
+        $db = static::connectToDatabase();
+        $sql_statement = 'SELECT email FROM Users where user_type = :user_type';
+        $query = $db->prepare($sql_statement);
+        $user_type = "admin";
+        $query->bindParam(':user_type',$user_type);
+        $query->execute();
+        $email = $query->fetch(PDO::FETCH_ASSOC);
+        return $email;
+    }
     /**
      * @return string
      */
@@ -84,7 +91,6 @@ class User extends Database
     {
         return $this->first_name;
     }
-
     /**
      * @param string $first_name
      */

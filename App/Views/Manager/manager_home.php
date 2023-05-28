@@ -2,6 +2,8 @@
 use App\Controllers\UserController;
 require_once 'autoload.php';
 require_once 'App/Controllers/UserController.php';
+require_once '../Common/session.php';
+
 // Fetch All Users
 $controller = new UserController();
 //

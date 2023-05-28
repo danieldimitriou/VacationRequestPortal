@@ -2,10 +2,17 @@
 use App\Controllers\RequestController;
 require_once 'autoload.php';
 require_once 'App/Controllers/RequestController.php';
+include '../Common/header.php';
+require_once '../Common/session.php';
 $controller = new RequestController();
 //
-//// Fetch All Users (employees)
-$requests = $controller->get_all_vacation_requests();
+//// Fetch All Users (employees);
+echo session_id();
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
+// User is not logged in or not an employee, redirect to login page
+    header("Location: http://localhost/EpignosisPortal/App/Views/Login/login.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,9 +22,6 @@ $requests = $controller->get_all_vacation_requests();
     <!-- Add any additional CSS links or stylesheets here -->
 </head>
 <body>
-<?php
-include '../Common/header.php';
-?>
 <div class="container">
     <h1>Vacation Requests</h1>
         <div class="col-md-6">

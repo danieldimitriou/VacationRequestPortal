@@ -1,3 +1,6 @@
+<?php
+require_once '../Common/session.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,7 @@
                             <label for="password">Password</label>
                             <input type="password" name="password" class="form-control" required>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block" name="employee_login" value="employee_login">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block" name="login" value="login">Login</button>
                     </form>
                 </div>
             </div>
