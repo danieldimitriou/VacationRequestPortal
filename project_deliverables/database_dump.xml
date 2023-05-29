@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.0
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: May 29, 2023 at 12:10 PM
+- Server version: 10.4.27-MariaDB
+- PHP Version: 7.4.33
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="vacation_request_database" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="mail">
+                CREATE TABLE `mail` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `sender_email` varchar(255) NOT NULL,
+                  `recipient_email` varchar(255) NOT NULL,
+                  `subject` varchar(255) NOT NULL,
+                  `message` text NOT NULL,
+                  `is_read` tinyint(1) DEFAULT 0,
+                  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                  `vacation_request_id` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `vacation_request_id` (`vacation_request_id`),
+                  CONSTRAINT `mail_ibfk_1` FOREIGN KEY (`vacation_request_id`) REFERENCES `vacation_request` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="users">
+                CREATE TABLE `users` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `first_name` varchar(255) NOT NULL,
+                  `last_name` varchar(255) NOT NULL,
+                  `email` varchar(255) NOT NULL,
+                  `password` varchar(255) NOT NULL,
+                  `user_type` enum('admin','employee') NOT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `email` (`email`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="vacation_request">
+                CREATE TABLE `vacation_request` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `vacation_start` date NOT NULL,
+                  `vacation_end` date NOT NULL,
+                  `reason` text NOT NULL,
+                  `date_submitted` timestamp NOT NULL DEFAULT current_timestamp(),
+                  `status` enum('approved','pending','denied') NOT NULL DEFAULT 'pending',
+                  `days_requested` int(11) DEFAULT NULL,
+                  `requesting_employee_email` varchar(255) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'vacation_request_database'
+    -->
+    <database name="vacation_request_database">
+        <!-- Table mail -->
+        <table name="mail">
+            <column name="id">4</column>
+            <column name="sender_email">g@g.com</column>
+            <column name="recipient_email">jane@example.com</column>
+            <column name="subject">Vacation Request</column>
+            <column name="message">
+  &lt;h1 style=&quot;color: #333;&quot;&gt;Dear supervisor,&lt;/h1&gt;
+  &lt;p&gt;Employee George Georgiou requested for some time off, starting on 2023-05-17 and ending on 2023-05-12, stating the reason:&lt;/p&gt;
+  &lt;p&gt;1&lt;/p&gt;
+  &lt;p&gt;Click on one of the below links to approve or reject the application:&lt;/p&gt;
+  &lt;p&gt;
+  
+ 
+</column>
+            <column name="is_read">1</column>
+            <column name="created_at">2023-05-29 12:00:22</column>
+            <column name="vacation_request_id">121</column>
+        </table>
+        <table name="mail">
+            <column name="id">5</column>
+            <column name="sender_email">g@g.com</column>
+            <column name="recipient_email">jane@example.com</column>
+            <column name="subject">Vacation Request</column>
+            <column name="message">
+  &lt;h1 style=&quot;color: #333;&quot;&gt;Dear supervisor,&lt;/h1&gt;
+  &lt;p&gt;Employee George Georgiou requested for some time off, starting on 2023-05-12 and ending on 2023-05-17, stating the reason:&lt;/p&gt;
+  &lt;p&gt;2&lt;/p&gt;
+  &lt;p&gt;Click on one of the below links to approve or reject the application:&lt;/p&gt;
+  &lt;p&gt;
+  
+ 
+</column>
+            <column name="is_read">1</column>
+            <column name="created_at">2023-05-29 12:00:26</column>
+            <column name="vacation_request_id">122</column>
+        </table>
+        <table name="mail">
+            <column name="id">6</column>
+            <column name="sender_email">g@g.com</column>
+            <column name="recipient_email">jane@example.com</column>
+            <column name="subject">Vacation Request</column>
+            <column name="message">
+  &lt;h1 style=&quot;color: #333;&quot;&gt;Dear supervisor,&lt;/h1&gt;
+  &lt;p&gt;Employee George Georgiou requested for some time off, starting on 2023-05-21 and ending on 2023-06-03, stating the reason:&lt;/p&gt;
+  &lt;p&gt;3&lt;/p&gt;
+  &lt;p&gt;Click on one of the below links to approve or reject the application:&lt;/p&gt;
+  &lt;p&gt;
+  
+ 
+</column>
+            <column name="is_read">1</column>
+            <column name="created_at">2023-05-29 12:00:33</column>
+            <column name="vacation_request_id">123</column>
+        </table>
+        <table name="mail">
+            <column name="id">7</column>
+            <column name="sender_email">g@g.com</column>
+            <column name="recipient_email">jane@example.com</column>
+            <column name="subject">Vacation Request</column>
+            <column name="message">
+  &lt;h1 style=&quot;color: #333;&quot;&gt;Dear supervisor,&lt;/h1&gt;
+  &lt;p&gt;Employee George Georgiou requested for some time off, starting on 2023-06-04 and ending on 2023-05-20, stating the reason:&lt;/p&gt;
+  &lt;p&gt;3212&lt;/p&gt;
+  &lt;p&gt;Click on one of the below links to approve or reject the application:&lt;/p&gt;
+  &lt;p&gt;
+  
+ 
+</column>
+            <column name="is_read">1</column>
+            <column name="created_at">2023-05-29 12:43:54</column>
+            <column name="vacation_request_id">124</column>
+        </table>
+        <table name="mail">
+            <column name="id">9</column>
+            <column name="sender_email">jane@example.com</column>
+            <column name="recipient_email">g@g.com</column>
+            <column name="subject">Vacation Request Decision</column>
+            <column name="message">Dear employee, your supervisor has accepted your application
+submitted on 2023-05-29.</column>
+            <column name="is_read">0</column>
+            <column name="created_at">2023-05-29 12:53:15</column>
+            <column name="vacation_request_id">122</column>
+        </table>
+        <table name="mail">
+            <column name="id">10</column>
+            <column name="sender_email">jane@example.com</column>
+            <column name="recipient_email">g@g.com</column>
+            <column name="subject">Vacation Request Decision</column>
+            <column name="message">Dear employee, your supervisor has accepted your application
+submitted on 2023-05-29.</column>
+            <column name="is_read">0</column>
+            <column name="created_at">2023-05-29 12:53:17</column>
+            <column name="vacation_request_id">123</column>
+        </table>
+        <table name="mail">
+            <column name="id">11</column>
+            <column name="sender_email">jane@example.com</column>
+            <column name="recipient_email">g@g.com</column>
+            <column name="subject">Vacation Request Decision</column>
+            <column name="message">Dear employee, your supervisor has accepted your application
+submitted on 2023-05-29.</column>
+            <column name="is_read">0</column>
+            <column name="created_at">2023-05-29 12:53:17</column>
+            <column name="vacation_request_id">124</column>
+        </table>
+        <!-- Table users -->
+        <table name="users">
+            <column name="id">1</column>
+            <column name="first_name">John</column>
+            <column name="last_name">Doe2222</column>
+            <column name="email">john@example.com</column>
+            <column name="password">password1</column>
+            <column name="user_type">employee</column>
+        </table>
+        <table name="users">
+            <column name="id">2</column>
+            <column name="first_name">Jane</column>
+            <column name="last_name">Smith1</column>
+            <column name="email">jane@example.com</column>
+            <column name="password">$2y$10$tR5zBfiljN0OtyaJjKTFM.j5Qk65qFEBtygZlsouqTXek.WDK7lB2</column>
+            <column name="user_type">admin</column>
+        </table>
+        <table name="users">
+            <column name="id">46</column>
+            <column name="first_name">Daniel</column>
+            <column name="last_name">Dimitriou</column>
+            <column name="email">danieldimitriou1@gmail.com</column>
+            <column name="password">$2y$10$Hj1.b1722XYvl0wbdHpc6.MX51L5xlbVLY6aqWkvXaZw5DjpJS9Zy</column>
+            <column name="user_type">admin</column>
+        </table>
+        <table name="users">
+            <column name="id">47</column>
+            <column name="first_name">George</column>
+            <column name="last_name">Georgiou</column>
+            <column name="email">g@g.com</column>
+            <column name="password">$2y$10$lTepkapYgMb7FZy1cUD2ReIkRTNcY2wrb2yLODcayyKE2XHOPd9YS</column>
+            <column name="user_type">employee</column>
+        </table>
+        <!-- Table vacation_request -->
+        <table name="vacation_request">
+            <column name="id">121</column>
+            <column name="vacation_start">2023-05-17</column>
+            <column name="vacation_end">2023-05-12</column>
+            <column name="reason">1</column>
+            <column name="date_submitted">2023-05-29 12:00:22</column>
+            <column name="status">approved</column>
+            <column name="days_requested">5</column>
+            <column name="requesting_employee_email">g@g.com</column>
+        </table>
+        <table name="vacation_request">
+            <column name="id">122</column>
+            <column name="vacation_start">2023-05-12</column>
+            <column name="vacation_end">2023-05-17</column>
+            <column name="reason">2</column>
+            <column name="date_submitted">2023-05-29 12:00:26</column>
+            <column name="status">approved</column>
+            <column name="days_requested">5</column>
+            <column name="requesting_employee_email">g@g.com</column>
+        </table>
+        <table name="vacation_request">
+            <column name="id">123</column>
+            <column name="vacation_start">2023-05-21</column>
+            <column name="vacation_end">2023-06-03</column>
+            <column name="reason">3</column>
+            <column name="date_submitted">2023-05-29 12:00:32</column>
+            <column name="status">approved</column>
+            <column name="days_requested">13</column>
+            <column name="requesting_employee_email">g@g.com</column>
+        </table>
+        <table name="vacation_request">
+            <column name="id">124</column>
+            <column name="vacation_start">2023-06-04</column>
+            <column name="vacation_end">2023-05-20</column>
+            <column name="reason">3212</column>
+            <column name="date_submitted">2023-05-29 12:43:53</column>
+            <column name="status">approved</column>
+            <column name="days_requested">15</column>
+            <column name="requesting_employee_email">g@g.com</column>
+        </table>
+    </database>
+</pma_xml_export>

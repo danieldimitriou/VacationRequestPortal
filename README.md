@@ -2,6 +2,8 @@
 
 This is a simple vacation request portal written in plain PHP. The application allows employees to submit vacation requests, which are then sent to their supervisors for approval using a mail server.
 
+# Project Deliverables
+Please find the project deliverables in the folder called "project_deliverables". It contains the ERD and the database dump.
 ## Prerequisites
 
 Before running the application, make sure you have the following dependencies installed:
@@ -55,3 +57,15 @@ to update the user's information. <br><br>
 In both the employee and admin interfaces, a navigation bar appears that contains a link to the user's email notification.
 There, they can view their inbox and outbox emails, and the administrator can accept or deny requests that are in their inbox. After that,
 the email and the vacation request are updated, and the email no longer shows in the inbox.
+# ERD Diagram of the Database
+![ERD Diagram of the Database](project_deliverables/ERD_Epignosis.png)
+
+
+### To change in the future:
+1. Add a relationship between the user and the vacation request, instead of using the user's email.
+2. Implement a router for redirecting more efficiently
+3. Make the URL's shorter/prettier(.htaccess does not work currently)
+4. Add more type checking
+5. Implement better constructors for the objects
+6. General code decluttering and formatting
+7. Modularization of certain parts
