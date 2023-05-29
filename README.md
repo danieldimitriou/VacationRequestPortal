@@ -65,7 +65,7 @@ smtp_port=1025
 1. Start the XAMPP control panel and ensure that the Apache and MySQL services are running.
 2. Start the MailHog service.
 
-2. Access the application by opening a web browser and navigating to `http://localhost/EpignosisPortal/App/Views/Login/login.php` This is the starting page for either user.
+2. Access the application by opening a web browser and navigating to `http://localhost/VacationRequestPortal_PHP/App/Views/Login/login.php` This is the starting page for either user.
 
 3. Use the application to submit vacation requests, approve or reject requests as a supervisor, and manage employee information.
 
