@@ -57,7 +57,7 @@ smtp_port=1025
 
 5. Configure the database connection settings by editing the `config.php` file located in the App/Config directory. Update the database hostname, username, password, and database name according to your setup.
 
-6. Import the provided SQL file (`database.sql`) into your MySQL database to create the necessary tables.
+6. Import the provided SQL file (`project_deliverables/database.sql`) into your MySQL database to create the necessary tables.
 
 
 ## Usage
