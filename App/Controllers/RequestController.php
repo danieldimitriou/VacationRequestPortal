@@ -68,11 +68,13 @@ class RequestController
                     $mail->send();
                     $mail_data = new Mail($sender, $recipient, $subject, $body, $vacation_request->getId());
                     $mail_data->save_mail_information();
-                } catch (Exception $e) {
+                    header("Location: http://localhost/EpignosisPortal/App/Views/Employee/employee_home.php");
+                } catch (\PDOException $e) {
                     echo 'error while sending or saving the mail ';
+                    var_dump($e);
                 }
 
-                header("Location: http://localhost/EpignosisPortal/App/Views/Employee/employee_home.php");
+
             } catch (Exception $e) {
                 echo 'Failed to send email: ' . $mail->ErrorInfo;
             }
