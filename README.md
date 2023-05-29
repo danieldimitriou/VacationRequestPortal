@@ -1,4 +1,4 @@
-# VacationRequestPortal_PHP
+# VacationRequestPortal
 
 This is a simple vacation request portal written in plain PHP. The application allows employees to submit vacation requests, which are then sent to their supervisors for approval using a mail server.
 
