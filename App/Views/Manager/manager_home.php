@@ -21,6 +21,13 @@ $users = $controller->get_all_employees();
 <head>
     <title>User Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        /* Add CSS for hover effect */
+        tbody tr:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
@@ -48,7 +55,7 @@ include '../Common/header.php';
             </thead>
             <tbody>
             <?php foreach ($users as $user): ?>
-                <tr>
+                <tr onclick="window.location='employee_properties.php?id=<?= $user['id'] ?>'">
                     <td><?= $user['id'] ?></td>
                     <td><?= $user['first_name'] ?></td>
                     <td><?= $user['last_name'] ?></td>

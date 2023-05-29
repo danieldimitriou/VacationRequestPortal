@@ -5,13 +5,13 @@ require_once 'App/Controllers/RequestController.php';
 require_once '../Common/header.php';
 require_once '../Common/session.php';
 //session_start(); // Start the session
-var_dump($_SESSION);
+//var_dump($_SESSION);
 $controller = new RequestController();
 //var_dump($_SESSION["user_type"]);
 
 //
 //// Fetch All Users (employees)
-$requests = $controller->get_all_vacation_requests();
+$requests = $controller->get_employees_vacation_requests($_SESSION["user_email"]);
 ?>
 <!DOCTYPE html>
 <html>

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 require_once 'autoload.php';
 use App\Models\User;
+use PHPMailer\PHPMailer\Exception;
 
 class UserController {
     public function handleRequest()
@@ -23,7 +24,8 @@ class UserController {
             // Redirect to the create employee page
             $employee_data = [
                 'email' => $_POST['email'],
-                'password' => $_POST['password']
+                'password' => $_POST['password'],
+                'verified_password' =>$_POST['verified_password']
             ];
             $url = $this->authenticate_employee($employee_data);
             header("Location:" . $url);
@@ -42,11 +44,31 @@ class UserController {
             session_destroy();
             header($redirect_url);
         }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_user'])) {
+            $user = new User();
+            $user = $user->get_user_by_id($_POST["user_id"]);
+            $user->setFirstName($_POST["first_name"]);
+            $user->setLastName($_POST["last_name"]);
+            $user->setEmail($_POST["email"]);
+            $user->setUserType($_POST["user_type"]);
+            try{
+                $user ->update_user($_POST["user_id"], $user);
+                header("Location: http://localhost/EpignosisPortal/App/Views/Manager/manager_home.php");
+            }catch (Exception $e){
+
+            }
+            // Redirect to the create employee page
+
+        }
     }
     private function authenticate_employee($employee_data){
         session_start();
 //        var_dump($employee_data);
-        $employee = $this->get_employee_by_email($employee_data["email"]);
+        try{
+            $employee = $this->get_employee_by_email($employee_data["email"]);
+        }catch (Exception $e){
+
+        }
         //if the returned employee object(from the db) has a first name and email(which means we successfully fetched it) try to authenticate by checking the password.
         if($employee->getEmail() != null && $employee->getFirstName()){
             $hashedPassword = $employee->getPassword();
@@ -69,6 +91,7 @@ class UserController {
                 echo "Wrong password";
             }
         }
+        echo "123";
     }
     private function save_new_employee($data) {
         // Perform any validation or data processing here
@@ -88,10 +111,16 @@ class UserController {
 //        header("Location: http://localhost/EpignosisPortal/App/Views/Home/Manager/manager_home.php");
 //        exit;
     }
-    private function get_employee_by_email($email): User
+    public function get_employee_by_email($email): User
     {
         $user = new User();
         $user = $user->get_user_by_email($email);
+        return $user;
+    }
+
+    public function get_employee_by_id($id){
+        $user = new User();
+        $user = $user->get_user_by_id($id);
         return $user;
     }
 

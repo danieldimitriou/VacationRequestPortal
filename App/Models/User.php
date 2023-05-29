@@ -36,6 +36,9 @@ class User extends Database
         if (isset($data['user_type'])) {
             $this->user_type = $data['user_type'];
         }
+        if(isset($data["id"])){
+            $this->id = $data["id"];
+        }
     }
 
     public function save_user(){
@@ -53,6 +56,30 @@ class User extends Database
         //returns true if it succeeded and false if not
         return $query->execute();
     }
+    public function update_user($user_id, User $updated_user_data)
+    {
+        $db = static::connectToDatabase();
+        $sql_statement = 'UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email, user_type = :user_type WHERE id = :id';
+        $query = $db->prepare($sql_statement);
+        // Bind the parameters
+        $first_name = $updated_user_data->getFirstName();
+        $last_name = $updated_user_data->getLastName();
+        $email = $updated_user_data->getEmail();
+        $user_type = $updated_user_data->getUserType();
+        $query->bindParam(':first_name', $first_name);
+        $query->bindParam(':last_name', $last_name);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':user_type', $user_type);
+        $query->bindParam(':id', $user_id);
+
+        // Execute the query
+        if ($query->execute()) {
+            return true; // Return true if the update was successful
+        } else {
+            return false; // Return false if the update failed
+        }
+    }
+
     public function get_user_by_email($user_email): User
     {
         $db = static::connectToDatabase();
@@ -61,7 +88,6 @@ class User extends Database
         $query->bindParam(':email',$user_email);
         $query->execute();
         $user_data = $query->fetch(PDO::FETCH_ASSOC);
-        $user = new User($user_data);
         return new User($user_data);
     }
 
@@ -73,7 +99,17 @@ class User extends Database
         $users = $query->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
+    public function get_user_by_id($id){
+        $db = static::connectToDatabase();
+        $sql_statement = 'SELECT * FROM Users where id = :id ';
+        $query = $db->prepare($sql_statement);
+        $query->bindParam(':id',$id);
+        $query->execute();
+        $user_data = $query->fetch(PDO::FETCH_ASSOC);
+        return new User($user_data);
+    }
 
+    //supposes that there is only 1 administrator
     public static function get_manager_email(){
         $db = static::connectToDatabase();
         $sql_statement = 'SELECT email FROM Users where user_type = :user_type';

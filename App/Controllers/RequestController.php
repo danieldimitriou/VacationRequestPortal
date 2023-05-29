@@ -102,6 +102,11 @@ class RequestController
     {
         return VacationRequest::get_all_vacation_requests();
     }
+
+    public function get_employees_vacation_requests($employee_email){
+        return VacationRequest::get_employees_vacation_requests($employee_email);
+    }
+
 }
 
 $controller = new RequestController();

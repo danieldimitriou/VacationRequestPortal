@@ -34,6 +34,12 @@ include '../Common/header.php';
         </div>
 
         <div class="form-group">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+
+
+        <div class="form-group">
             <label for="user_type">User Type:</label>
             <select class="form-control" id="user_type" name="user_type" required>
                 <option value="admin">Admin</option>

@@ -14,11 +14,15 @@ class VacationRequest extends Database {
     private string $reason;
     private string $status;
     private int $days_requested;
+    private string $date_submitted;
 
 
 
     public function __construct($data = [])
     {
+        if(isset($data["id"])){
+            $this->id = $data["id"];
+        }
         if (isset($data['vacation_start'])) {
             $this->vacation_start = $data['vacation_start'];
         }
@@ -36,6 +40,9 @@ class VacationRequest extends Database {
         }
         if (isset($data['days_requested'])) {
             $this->days_requested = $data['days_requested'];
+        }
+        if (isset($data['date_submitted'])) {
+            $this->date_submitted = $data['date_submitted'];
         }
     }
 
@@ -71,12 +78,32 @@ class VacationRequest extends Database {
         $query = $db->prepare($sql_statement);
         $query->bindParam(':vacation_request_id', $vacation_request_id);
         $query->execute();
-        $vacation_request = $query->fetchAll(PDO::FETCH_ASSOC);
+        $vacation_request = $query->fetch(PDO::FETCH_ASSOC);
         return $vacation_request;
     }
-    public function update_vacation_request($vacation_request_id, $new_vacation_request_data){
+    public function update_vacation_request($vacation_request_id, VacationRequest $new_vacation_request_data)
+    {
+        $db = static::connectToDatabase();
 
+        // Construct the SQL statement
+        $sql_statement = 'UPDATE vacation_request SET  status = :status WHERE id = :vacation_request_id';
+
+        // Prepare the query
+        $query = $db->prepare($sql_statement);
+
+        // Bind the parameters
+        $status = $new_vacation_request_data->getStatus();
+        $query->bindParam(':status',$status );
+        $query->bindParam(':vacation_request_id', $vacation_request_id);
+
+        // Execute the query
+        if ($query->execute()) {
+            return true; // Return true if the update was successful
+        } else {
+            return false; // Return false if the update failed
+        }
     }
+
 
     public static function get_all_vacation_requests(){
 
@@ -92,13 +119,37 @@ class VacationRequest extends Database {
         return $vacation_request_list;
 
     }
+    public static function get_employees_vacation_requests($employee_email): array
+    {
 
+        $db = static::connectToDatabase();
+        $sql_statement = 'SELECT * FROM vacation_request where requesting_employee_email = :requesting_employee_email ';
+        $query = $db->prepare($sql_statement);
+        $query->bindParam(':requesting_employee_email',$employee_email );
+        $query->execute();
+        $vacation_requests = $query->fetchAll(PDO::FETCH_ASSOC);
+        $vacation_request_list = [];
+        foreach ($vacation_requests as $vacation_request){
+            array_push($vacation_request_list, $vacation_request);
+        }
+        return $vacation_request_list;
+
+    }
     public function getId(){
         return $this->id;
     }
     public function setId($id){
         $this->id = $id;
     }
+
+    /**
+     * @return string
+     */
+    public function getDateRequested(): string
+    {
+        return $this->date_submitted;
+    }
+
     /**
      * @return string
      */
