@@ -18,15 +18,43 @@ Before running the application, make sure you have the following dependencies in
 
 1. Clone the repository into the `htdocs` folder of your XAMPP installation:
 <br>
-```git clone https://github.com/danieldimitriou/VacationRequestPortal_PHP.git ```
+`git clone https://github.com/danieldimitriou/VacationRequestPortal_PHP.git `
 2. Install the required dependencies by navigating to the project directory and running Composer:
 <br>
-```composer install```
+`composer install`
 3. Start the MailHog server by opening a command prompt and typing `mailhog`. Make sure the MailHog binary is added to the PATH variable.
+4. In the php.ini file, under [mail function] change the SMTP address and accordingly:
+ <br> 
+```
+[mail function]
+   ; For Win32 only.
+   ; http://php.net/smtp
+   SMTP=127.0.0.1
+   ; http://php.net/smtp-port
+   smtp_port=1025
+```
+and in the sendmail.ini, under [sendmail], add the SMTP server address and port as well. 
+<br>
+```
+[sendmail]
 
-4. Configure the database connection settings by editing the `config.php` file located in the App/Config directory. Update the database hostname, username, password, and database name according to your setup.
+; you must change mail.mydomain.com to your smtp server,
+; or to IIS's "pickup" directory.  (generally C:\Inetpub\mailroot\Pickup)
+; emails delivered via IIS's pickup directory cause sendmail to
+; run quicker, but you won't get error messages back to the calling
+; application.
 
-5. Import the provided SQL file (`database.sql`) into your MySQL database to create the necessary tables.
+smtp_server=127.0.0.1
+
+; smtp port (normally 25)
+
+smtp_port=1025
+```
+
+files in the xampp folder to use the correct .  
+5. Configure the database connection settings by editing the `config.php` file located in the App/Config directory. Update the database hostname, username, password, and database name according to your setup.
+
+6. Import the provided SQL file (`database.sql`) into your MySQL database to create the necessary tables.
 
 
 ## Usage
