@@ -17,14 +17,19 @@ Before running the application, make sure you have the following dependencies in
 ## Installation
 
 1. Clone the repository into the `htdocs` folder of your XAMPP installation:
-<br>
-`git clone https://github.com/danieldimitriou/VacationRequestPortal_PHP.git `
+
+
+`
+git clone https://github.com/danieldimitriou/VacationRequestPortal_PHP.git
+`
+
 2. Install the required dependencies by navigating to the project directory and running Composer:
-<br>
+
+
 `composer install`
+
 3. Start the MailHog server by opening a command prompt and typing `mailhog`. Make sure the MailHog binary is added to the PATH variable.
 4. In the php.ini file, under [mail function] change the SMTP address and accordingly:
- <br> 
 ```
 [mail function]
    ; For Win32 only.
@@ -33,8 +38,7 @@ Before running the application, make sure you have the following dependencies in
    ; http://php.net/smtp-port
    smtp_port=1025
 ```
-and in the sendmail.ini, under [sendmail], add the SMTP server address and port as well. 
-<br>
+and in the sendmail.ini, under [sendmail], add the SMTP server address and port as well.
 ```
 [sendmail]
 
@@ -51,7 +55,6 @@ smtp_server=127.0.0.1
 smtp_port=1025
 ```
 
-files in the xampp folder to use the correct .  
 5. Configure the database connection settings by editing the `config.php` file located in the App/Config directory. Update the database hostname, username, password, and database name according to your setup.
 
 6. Import the provided SQL file (`database.sql`) into your MySQL database to create the necessary tables.
@@ -78,10 +81,13 @@ First thing any user must do is login using their credentials. <br>_Note: The da
 | jane@example.com | password | Admin     |
 
 After providing the credentials, the user is authenticated and redirected to either the employee home page or to the administrator's home page based on the logged in user's
-type(either employee or admin).<br><br> The employee's home page includes all their previously sent vacation requests as well as a button to submit a new request. If an employee submits a new request, an email is automatically sent
-to the administrator's email(this implementation assumes there's only 1 administrator. it could be improved by adding a column to the user table for their supervisor and getting their email.).
+type(either employee or admin).
+
+The employee's home page includes all their previously sent vacation requests as well as a button to submit a new request. If an employee submits a new request, an email is automatically sent to the administrator's email(this implementation assumes there's only 1 administrator. it could be improved by adding a column to the user table for their supervisor and getting their email.).
+
 When the administrator logs in, they can view a list of all users. Clicking on any of these users redirects to a page that allows the admin
-to update the user's information. <br><br>
+to update the user's information.
+
 In both the employee and admin interfaces, a navigation bar appears that contains a link to the user's email notification.
 There, they can view their inbox and outbox emails, and the administrator can accept or deny requests that are in their inbox. After that,
 the email and the vacation request are updated, and the email no longer shows in the inbox.
@@ -90,10 +96,10 @@ the email and the vacation request are updated, and the email no longer shows in
 
 
 ### To change in the future:
-1. Add a relationship between the user and the vacation request, instead of using the user's email.
-2. Implement a router for redirecting more efficiently
-3. Make the URL's shorter/prettier(.htaccess does not work currently)
-4. Add more type checking
-5. Implement better constructors for the objects
-6. General code decluttering and formatting
-7. Modularization of certain parts
+-  Add a relationship between the user and the vacation request, instead of using the user's email.
+- Implement a router for redirecting more efficiently
+- Make the URL's shorter/prettier(.htaccess does not work currently)
+- Add more type checking
+- Implement better constructors for the objects
+- General code decluttering and formatting
+- Modularization of certain parts-
